@@ -1,11 +1,9 @@
-#include <iostream>
-using namespace std;
+#include "exceptions.hpp"
 
 struct pairs{
     int first; //row
     int second; //column
 };
-
 
 class Board{
     
@@ -15,6 +13,7 @@ class Board{
     
     public:
     Board();
+    Board(Board&);
 	Board(int); //c'tor
 	~Board(); // de'tor
 	int getSize();
@@ -24,13 +23,12 @@ class Board{
     char* getColumn(int); // will return a pointer to the beginning of the column [0,y]
     
     Board& operator= (Board&);
-    Board& operator= (char);
-    
+    char operator= (char);
+
     char& operator[] (const pairs);
     const char& operator[] (const pairs) const;
     
     void fill(char);
-    void fill(char, int, int);
     void dealloc();
     char** alloc(int);
     

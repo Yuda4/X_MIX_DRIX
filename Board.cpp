@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 #include "Board.hpp"
 
 Board :: Board (int size){
@@ -8,13 +6,15 @@ Board :: Board (int size){
 	fill('.');
 }
 
+Board :: Board(Board& other){
+    this-> boardSize = other.getSize();
+	gameBoard = alloc(boardSize);
+	 for(int rows = 0; rows < (this-> boardSize); rows++)
+    	    for(int columns = 0; columns < (this-> boardSize); columns++)
+    	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns];
+}
+
 Board :: ~Board(){
-    /*for(int rows = 0; rows < this-> boardSize; rows++){
-	    for(int columns = 0; columns < this-> boardSize; columns++){
-	        free(&gameBoard[rows][columns]);
-	    }
-	}
-    delete [] gameBoard;*/
     dealloc();
 }
 
@@ -36,41 +36,57 @@ void Board :: dealloc(){
 }
 
 void Board :: fill(char symbol){
-    for(int rows = 0; rows < (this-> boardSize); rows++){
-	    for(int columns = 0; columns < (this-> boardSize); columns++){
-	       (this-> gameBoard[rows][columns]) = symbol;
-	    }
-	}
-}
-
-void Board :: fill(char symbol, int row, int col){
-    (this-> gameBoard[row][col]) = symbol;
+        for(int rows = 0; rows < (this-> boardSize); rows++)
+    	    for(int columns = 0; columns < (this-> boardSize); columns++)
+    	       (this-> gameBoard[rows][columns]) = symbol;
 }
 
 char& Board :: operator[] (const pairs index){
+    if(index.first >= getSize() || index.second >= getSize()){
+      IllegalCoordinateException coordinate;
+      coordinate.set_first(index.first);
+      coordinate.set_second(index.second);
+      throw coordinate;
+    } 
+    if(index.first < 0 || index.second < 0){
+        IllegalCoordinateException coordinate;
+        coordinate.set_first(index.first);
+        coordinate.set_second(index.second);
+        throw coordinate;
+    }
     return gameBoard[index.first][index.second];
 }
 
 const char& Board ::operator[] (const pairs index) const{
+    if(index.first >= boardSize || index.second >= boardSize){
+      IllegalCoordinateException coordinate;
+      coordinate.set_first(index.first);
+      coordinate.set_second(index.second);
+      throw coordinate;
+    } 
+    if(index.first < 0 || index.second < 0){
+        IllegalCoordinateException coordinate;
+        coordinate.set_first(index.first);
+        coordinate.set_second(index.second);
+        throw coordinate;
+    }
     return gameBoard[index.first][index.second];
 }
 
 Board& Board ::operator= (Board& other){
-    this-> boardSize = other.boardSize;
-    this-> gameBoard [boardSize - 1][boardSize - 1] = { };
-	 for(int rows = 0; rows < (this-> boardSize); rows++){
-	    for(int columns = 0; columns < (this-> boardSize); columns++){
-	        (this->gameBoard[rows][columns]) = other.gameBoard[rows][columns];
-	    }
-	}
+    this-> boardSize = other.getSize();
+	gameBoard = alloc(boardSize);
+	 for(int rows = 0; rows < (this-> boardSize); rows++)
+    	    for(int columns = 0; columns < (this-> boardSize); columns++)
+    	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns];
     return *this;
 }
 
-Board& Board ::operator= (char symbol){
-    if(symbol == '.'){
-        fill('.');
-    }
-    
-    return *this;
+char Board :: operator= (char symbol){
+    if(symbol == '.'){ fill(symbol); }
+    else if (symbol != 'X' && symbol != 'O'){
+        IllegalCharException ichar;
+        ichar.set_illegal(symbol);
+        throw ichar; }
+    return symbol;
 }
-
