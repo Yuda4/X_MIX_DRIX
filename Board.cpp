@@ -3,7 +3,6 @@
 Board :: Board (int size){
     this-> boardSize = size;
 	gameBoard = alloc(boardSize);
-	fill('.');
 }
 
 Board :: Board(Board& other){
@@ -15,24 +14,20 @@ Board :: Board(Board& other){
 }
 
 Board :: ~Board(){
-    dealloc();
+    for(int i = 0; i < (this-> boardSize); i++){
+		delete [] gameBoard[i];
+	}
+	delete [] gameBoard;
 }
 
 int Board ::getSize() { return this-> boardSize; }
 
-char** Board :: alloc(int size){
-	char ** new_board = new char *[size];
+place** Board :: alloc(int size){
+	place** new_board = new place*[size];
 	for(int i = 0; i < size; i++){
-		new_board[i] = new char[size];
+		new_board[i] = new place[size];
 	}
 	return new_board;
-}
-
-void Board :: dealloc(){
-	for(int i = 0; i < (this-> boardSize); i++){
-		delete [] gameBoard[i];
-	}
-	delete [] gameBoard;
 }
 
 void Board :: fill(char symbol){
@@ -41,7 +36,7 @@ void Board :: fill(char symbol){
     	       (this-> gameBoard[rows][columns]) = symbol;
 }
 
-char& Board :: operator[] (const pairs index){
+place& Board :: operator[] (const pairs index){
     if(index.first >= getSize() || index.second >= getSize()){
       IllegalCoordinateException coordinate;
       coordinate.set_first(index.first);
@@ -57,7 +52,7 @@ char& Board :: operator[] (const pairs index){
     return gameBoard[index.first][index.second];
 }
 
-const char& Board ::operator[] (const pairs index) const{
+const char Board ::operator[] (const pairs index) const{
     if(index.first >= boardSize || index.second >= boardSize){
       IllegalCoordinateException coordinate;
       coordinate.set_first(index.first);
@@ -70,7 +65,7 @@ const char& Board ::operator[] (const pairs index) const{
         coordinate.set_second(index.second);
         throw coordinate;
     }
-    return gameBoard[index.first][index.second];
+    return gameBoard[index.first][index.second].get_sign();
 }
 
 Board& Board ::operator= (Board& other){

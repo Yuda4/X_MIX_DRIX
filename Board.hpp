@@ -1,4 +1,4 @@
-#include "exceptions.hpp"
+#include "place.cpp"
 
 struct pairs{
     int first; //row
@@ -8,7 +8,7 @@ struct pairs{
 class Board{
     
     private:
-    char** gameBoard;
+    place** gameBoard;
     int boardSize;
     
     public:
@@ -25,20 +25,18 @@ class Board{
     Board& operator= (Board&);
     char operator= (char);
 
-    char& operator[] (const pairs);
-    const char& operator[] (const pairs) const;
+    place& operator[] (const pairs);
+    const char operator[] (const pairs) const;
     
     void fill(char);
-    void dealloc();
-    char** alloc(int);
+    place** alloc(int);
     
 };
 
     inline ostream& operator<< (ostream& os, Board& b){
-        
 		for(int rows = 0; rows < b.boardSize; rows++){
 			for(int columns = 0; columns < b.boardSize; columns++ ){
-				os << b.gameBoard[rows][columns];
+				os << (b.gameBoard[rows][columns]).get_sign();
 			}
 			os << endl;
 		}

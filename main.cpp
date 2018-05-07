@@ -1,7 +1,4 @@
-#include "Board.hpp"
-
-#include <iostream>
-using namespace std;
+#include "Board.cpp"
 
 int main() {
 	Board board1{4};  // Initializes a 4x4 board
@@ -11,7 +8,7 @@ int main() {
 								....
 								....
 								*/
-	board1[{1,1}]='t';
+	board1[{1,1}]='X';
 	board1[{1,2}]='O';
 	cout << board1 << endl;  /* Shows the following board:
 								....
@@ -26,7 +23,7 @@ int main() {
 		cout << "Illegal coordinate: " << ex.theCoordinate() << endl;  // prints "Illegal coordinate: 3,4"
 	}
 
-	board1 = '.';     // Fill the entire board with "."
+	board1= '.';     // Fill the entire board with "."
 	cout << board1 << endl;  /* Shows an empty board, as above */
 	try { 
 		board1 = 'a';        // This should raise an exception
