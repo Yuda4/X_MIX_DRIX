@@ -11,7 +11,6 @@ Board :: Board (int size){
 Board :: Board(Board& other){
     this-> boardSize = other.boardSize;
     alloc();
-    for (int i = 0; i < boardSize; ++i) gameBoard[i] = new place[boardSize];
     for(int rows = 0; rows < (this-> boardSize); rows++)
     	 for(int columns = 0; columns < (this-> boardSize); columns++)
     	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns].get_sign();
@@ -71,13 +70,14 @@ const char Board ::operator[] (const pairs index) const{
 }
 
 Board& Board ::operator= (Board& other){
-    this-> boardSize = other.boardSize;
-    alloc();
+    if(this == &other) return *this;
     dlloc();
-    for (int i = 0; i < boardSize; ++i) gameBoard[i] = new place[boardSize];
-    for(int rows = 0; rows < (this-> boardSize); rows++)
+    boardSize = other.boardSize;
+    gameBoard = new place*[boardSize];
+    for(int rows = 0; rows < (this-> boardSize); rows++){
+	    gameBoard[rows] = new place[boardSize];
     	    for(int columns = 0; columns < (this-> boardSize); columns++)
-    	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns];
+    	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns];}
     return *this;
 }
 
