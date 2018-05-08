@@ -36,3 +36,8 @@ place& place :: operator= (place& other){
     this->set_sign(other.get_sign());
     return *this;
 }
+
+bool place::operator==(place other) const{ return this-> sign == other.get_sign(); }
+bool place::operator!=(place other) const{ return this-> sign != other.get_sign(); }
+bool place::operator==(const char& ch) const{ return this-> sign == ch; }
+bool place::operator!=(const char& ch) const{ return this-> sign != ch; }
