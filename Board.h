@@ -40,7 +40,7 @@ class Board{
     
 };
 
-    inline ostream& operator<< (ostream& os, const Board& b){
+    inline ostream& operator<< (ostream& os, Board& b){
 		for(int rows = 0; rows < b.getSize(); rows++){
 			for(int columns = 0; columns < b.getSize; columns++ ){
 				os << (b.gameBoard[rows][columns]).get_sign();
