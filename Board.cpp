@@ -23,7 +23,7 @@ Board :: ~Board(){
 	delete [] gameBoard;
 }
 
-int Board ::getSize() { return this-> boardSize; }
+int Board ::getSize() { return boardSize; }
 
 place** Board :: alloc(int size){
 	place** new_board = new place*[size];
