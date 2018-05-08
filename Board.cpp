@@ -88,3 +88,13 @@ char Board :: operator= (char symbol){
         throw ichar; }
     return symbol;
 }
+
+bool operator== (const Board& firstA, const Board& secondB){
+    if(firstA.boardSize != secondB.boardSize) return false;
+    for(int rows = 0; rows < (firstA.boardSize); rows++)
+    	    for(int columns = 0; columns < (firstA.boardSize); columns++)
+    	       if(firstA.gameBoard[rows][columns] != secondB.gameBoard[rows][columns]) return false;
+    return true;
+}
+
+bool operator!= (const Board& firstA, const Board& secondB){ return !(firstA == secondB); } 
