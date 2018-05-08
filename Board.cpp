@@ -18,7 +18,7 @@ Board :: Board(Board& other){
 }
 
 Board :: ~Board(){
-    dlloc(;)
+    dlloc();
 }
 
 void Board :: dlloc(){
