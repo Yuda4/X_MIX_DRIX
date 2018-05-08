@@ -1,6 +1,8 @@
 #ifndef _BOARD_H
 #define _BOARD_H
 #include "place.hpp"
+#include <iostream>
+using namespace std;
 #endif
 
 struct pairs{

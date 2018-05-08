@@ -1,6 +1,8 @@
 #ifndef _PLACE_HPP
 #define _PLACE_HPP
 #include "exceptions.hpp"
+#include <iostream>
+using namespace std;
 #endif
 
 class place{
