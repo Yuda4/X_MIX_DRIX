@@ -1,5 +1,4 @@
-#include "Board.cpp"
-
+#include "Board.h"
 
 int main() {
 	Board board1{4};  // Initializes a 4x4 board

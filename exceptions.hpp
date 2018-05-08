@@ -1,7 +1,10 @@
-#include <iostream>
-using namespace std;
+#ifndef _EXCEPTIONS_HPP
+#define _EXCEPTIONS_HPP
 #include <exception>
 #include <string>
+#include <iostream>
+using namespace std;
+#endif
 
 class IllegalCoordinateException : public exception {
     int first;

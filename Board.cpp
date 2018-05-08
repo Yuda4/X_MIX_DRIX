@@ -1,4 +1,7 @@
+#ifndef _BOARD_CPP
+#define _BOARD_CPP
 #include "Board.h"
+#endif
 
 Board :: Board (int size){
     this-> boardSize = size;

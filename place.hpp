@@ -1,4 +1,7 @@
-#include "exceptions.cpp"
+#ifndef _PLACE_HPP
+#define _PLACE_HPP
+#include "exceptions.hpp"
+#endif
 
 class place{
     private:
@@ -13,10 +16,10 @@ class place{
         void set_sign(char);
         place& operator= (char);
         place& operator= (place&);
-        bool operator==(place other) const;
-        bool operator!=(place other) const;
-        bool operator==(const char& ch) const;
-        bool operator!=(const char& ch) const;
+        bool operator==(place) const;
+        bool operator!=(place) const;
+        bool operator==(const char&) const;
+        bool operator!=(const char&) const;
         
         friend ostream& operator<<(ostream&, place&);
 };

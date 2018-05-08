@@ -1,7 +1,10 @@
+#ifndef _PLACE_CPP
+#define _PLACE_CPP
 #include "place.hpp"
+#endif
 
 place :: place(){
-    this-> sign = '.';
+    sign = '.';
 }
 
 place :: place(char sign){
@@ -16,8 +19,8 @@ place :: place(place& other){
     this-> sign = other.sign;
 }
         
-char place :: get_sign(){
-    return this -> sign;
+char place :: get_sign(void){
+    return sign;
 }
 void place :: set_sign(char sign){
     if (sign != 'X' && sign != 'O' && sign != '.'){
