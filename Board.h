@@ -11,13 +11,9 @@ struct pairs{
 };
 
 class Board{
-    
-    private:
+    public:
     place** gameBoard;
     int boardSize;
-	
-    public:
-    
     Board();
     Board(Board&);
 	Board(int); //c'tor
@@ -42,8 +38,8 @@ class Board{
 };
 
     inline ostream& operator<< (ostream& os, const Board& b){
-		for(int rows = 0; rows < b.getSize(); rows++){
-			for(int columns = 0; columns < b.getSize(); columns++ ){
+		for(int rows = 0; rows < b.boardSize; rows++){
+			for(int columns = 0; columns < b.boardSize; columns++ ){
 				os << (b.gameBoard[rows][columns]).get_sign();
 			}
 			os << endl;
