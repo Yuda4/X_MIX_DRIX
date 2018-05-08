@@ -13,5 +13,5 @@ exceptions.o: exceptions.cpp exceptions.hpp
 		$(CCX) -c exceptions.cpp
 		
 Clean:
-rm *.o a.out
+		rm  *.o a.out
 
