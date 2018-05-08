@@ -1,4 +1,6 @@
 #include "Board.h"
+#include <iostream>
+using namespace std;
 
 int main() {
 	Board board1{4};  // Initializes a 4x4 board
