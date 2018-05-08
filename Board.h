@@ -15,15 +15,16 @@ class Board{
     private:
     place** gameBoard;
     int boardSize;
-    
+	
     public:
+    
     Board();
     Board(Board&);
 	Board(int); //c'tor
 	~Board(); // de'tor
 	int getSize();
     
-    friend ostream& operator<<(ostream& os, Board& b); //input
+    friend ostream& operator<<(ostream& os, const Board& b); //input
     place* getRow(int); // will return a pointer to the beginning of the rows at array [x,0]
     place* getColumn(int); // will return a pointer to the beginning of the column [0,y]
     
