@@ -5,15 +5,15 @@
 
 Board :: Board (int size){
     boardSize = size;
-	alloc(boardSize);
+    alloc();
 }
 
 Board :: Board(Board& other){
-    this-> boardSize = other.getSize();
-	alloc(boardSize);
+    this-> boardSize = other.boardSize;
+    alloc();
 	 for(int rows = 0; rows < (this-> boardSize); rows++)
     	    for(int columns = 0; columns < (this-> boardSize); columns++)
-    	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns];
+    	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns].get_sign();
 }
 
 Board :: ~Board(){
@@ -22,11 +22,9 @@ Board :: ~Board(){
 	delete [] gameBoard;
 }
 
-int Board ::getSize(void) { return boardSize; }
-
-void Board :: alloc(int size){
-	gameBoard = new place*[size];
-	for(int i = 0; i < size; i++) gameBoard[i] = new place[size];
+void Board :: alloc(){
+	gameBoard = new place*[boardSize];
+	for(int i = 0; i < boardSize; i++) gameBoard[i] = new place[boardSize];
 }
 
 void Board :: fill(char symbol){
@@ -36,7 +34,7 @@ void Board :: fill(char symbol){
 }
 
 place& Board :: operator[] (const pairs index){
-    if(index.first >= getSize() || index.second >= getSize()){
+    if(index.first >= boardSize || index.second >= boardSize){
       IllegalCoordinateException coordinate;
       coordinate.set_first(index.first);
       coordinate.set_second(index.second);
@@ -68,8 +66,8 @@ const char Board ::operator[] (const pairs index) const{
 }
 
 Board& Board ::operator= (Board& other){
-    this-> boardSize = other.getSize();
-	alloc(boardSize);
+    this-> boardSize = other.boardSize;
+    alloc();
 	 for(int rows = 0; rows < (this-> boardSize); rows++)
     	    for(int columns = 0; columns < (this-> boardSize); columns++)
     	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns];
