@@ -16,8 +16,8 @@ class Board{
     int boardSize;
     Board();
     Board(Board&);
-	Board(int); //c'tor
-	~Board(); // de'tor
+	Board(int); 
+	~Board();
 	int getSize();
     
     friend ostream& operator<<(ostream& os, const Board& b); //input
@@ -26,14 +26,14 @@ class Board{
     
     Board& operator= (Board&);
     char operator= (char);
-    friend bool operator== (Board&, Board&);
-    friend bool operator!= (Board&, Board&);
+    friend bool operator== (const Board&, const Board&);
+    friend bool operator!= (const Board&, const Board&);
 
     place& operator[] (const pairs);
     const char operator[] (const pairs) const;
     
     void fill(char);
-    place** alloc(int);
+    void alloc(int);
     
 };
 
