@@ -89,7 +89,7 @@ char Board :: operator= (char symbol){
     return symbol;
 }
 
-bool operator== (const Board& firstA, const Board& secondB){
+bool operator== (Board& firstA, Board& secondB){
     if(firstA.getSize() != secondB.getSize()) return false;
     for(int rows = 0; rows < (firstA.getSize()); rows++)
     	    for(int columns = 0; columns < (firstA.getSize()); columns++)
@@ -97,4 +97,4 @@ bool operator== (const Board& firstA, const Board& secondB){
     return true;
 }
 
-bool operator!= (const Board& firstA, const Board& secondB){ return !(firstA == secondB); } 
+bool operator!= (Board& firstA, Board& secondB){ return !(firstA == secondB); } 
