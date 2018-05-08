@@ -18,9 +18,13 @@ Board :: Board(Board& other){
 }
 
 Board :: ~Board(){
+    dlloc(;)
+}
+
+dlloc(){
     for(int i = 0; i < boardSize; i++)
 		delete [] gameBoard[i];
-	delete [] gameBoard;
+	delete [] gameBoard; 
 }
 
 void Board :: alloc(){
