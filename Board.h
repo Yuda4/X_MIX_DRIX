@@ -29,6 +29,8 @@ class Board{
     
     Board& operator= (Board&);
     char operator= (char);
+    friend bool operator== (const Board&, const Board&);
+    friend bool operator!= (const Board&, const Board&);
 
     place& operator[] (const pairs);
     const char operator[] (const pairs) const;
