@@ -90,9 +90,9 @@ char Board :: operator= (char symbol){
 }
 
 bool operator== (const Board& firstA, const Board& secondB){
-    if(firstA.boardSize != secondB.boardSize) return false;
-    for(int rows = 0; rows < (firstA.boardSize); rows++)
-    	    for(int columns = 0; columns < (firstA.boardSize); columns++)
+    if(firstA.getSize() != secondB.getSize()) return false;
+    for(int rows = 0; rows < (firstA.getSize()); rows++)
+    	    for(int columns = 0; columns < (firstA.getSize()); columns++)
     	       if(firstA.gameBoard[rows][columns] != secondB.gameBoard[rows][columns]) return false;
     return true;
 }
