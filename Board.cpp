@@ -23,7 +23,7 @@ Board :: ~Board(){
 	delete [] gameBoard;
 }
 
-int Board ::getSize() { return boardSize; }
+int Board ::getSize(void) { return boardSize; }
 
 place** Board :: alloc(int size){
 	place** new_board = new place*[size];
@@ -89,12 +89,12 @@ char Board :: operator= (char symbol){
     return symbol;
 }
 
-bool operator== (Board& firstA, Board& secondB){
-    if(firstA.getSize() != secondB.getSize()) return false;
-    for(int rows = 0; rows < (firstA.getSize()); rows++)
-    	    for(int columns = 0; columns < (firstA.getSize()); columns++)
+bool operator== (const Board& firstA, const Board& secondB){
+    if(firstA.boardSize != secondB.boardSize) return false;
+    for(int rows = 0; rows < (firstA.boardSize); rows++)
+    	    for(int columns = 0; columns < (firstA.boardSize); columns++)
     	       if(firstA.gameBoard[rows][columns] != secondB.gameBoard[rows][columns]) return false;
     return true;
 }
 
-bool operator!= (Board& firstA, Board& secondB){ return !(firstA == secondB); } 
+bool operator!= (const Board& firstA, const Board& secondB){ return !(firstA == secondB); } 
