@@ -19,6 +19,7 @@ class Board{
     Board(int); 
     ~Board();
     void alloc();
+    void dlloc();
 	
     friend ostream& operator<<(ostream& os, const Board& b); //input
     
