@@ -4,33 +4,29 @@
 #endif
 
 Board :: Board (int size){
-    this-> boardSize = size;
-	gameBoard = alloc(boardSize);
+    boardSize = size;
+	alloc(boardSize);
 }
 
 Board :: Board(Board& other){
     this-> boardSize = other.getSize();
-	gameBoard = alloc(boardSize);
+	alloc(boardSize);
 	 for(int rows = 0; rows < (this-> boardSize); rows++)
     	    for(int columns = 0; columns < (this-> boardSize); columns++)
     	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns];
 }
 
 Board :: ~Board(){
-    for(int i = 0; i < (this-> boardSize); i++){
+    for(int i = 0; i < boardSize; i++)
 		delete [] gameBoard[i];
-	}
 	delete [] gameBoard;
 }
 
 int Board ::getSize(void) { return boardSize; }
 
-place** Board :: alloc(int size){
-	place** new_board = new place*[size];
-	for(int i = 0; i < size; i++){
-		new_board[i] = new place[size];
-	}
-	return new_board;
+void Board :: alloc(int size){
+	gameBoard = new place*[size];
+	for(int i = 0; i < size; i++) gameBoard[i] = new place[size];
 }
 
 void Board :: fill(char symbol){
@@ -73,7 +69,7 @@ const char Board ::operator[] (const pairs index) const{
 
 Board& Board ::operator= (Board& other){
     this-> boardSize = other.getSize();
-	gameBoard = alloc(boardSize);
+	alloc(boardSize);
 	 for(int rows = 0; rows < (this-> boardSize); rows++)
     	    for(int columns = 0; columns < (this-> boardSize); columns++)
     	       (this-> gameBoard[rows][columns]) = other.gameBoard[rows][columns];
