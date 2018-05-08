@@ -3,7 +3,7 @@ CCX=g++ -std=c++11
 a.out: Board.o place.o exceptions.o 
 		$(CCX) main.cpp *.o
 		
-Board.o: Board.cpp Board.hpp
+Board.o: Board.cpp Board.h
 		$(CCX) -c Board.cpp
 		
 place.o: place.cpp place.hpp
