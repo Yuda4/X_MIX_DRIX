@@ -53,22 +53,6 @@ place& Board :: operator[] (const pairs index){
     return gameBoard[index.first][index.second];
 }
 
-const char Board ::operator[] (const pairs index) const{
-    if(index.first >= boardSize || index.second >= boardSize){
-      IllegalCoordinateException coordinate;
-      coordinate.set_first(index.first);
-      coordinate.set_second(index.second);
-      throw coordinate;
-    } 
-    if(index.first < 0 || index.second < 0){
-        IllegalCoordinateException coordinate;
-        coordinate.set_first(index.first);
-        coordinate.set_second(index.second);
-        throw coordinate;
-    }
-    return gameBoard[index.first][index.second].get_sign();
-}
-
 Board& Board ::operator= (Board& other){
     if(this == &other) return *this;
     dlloc();
