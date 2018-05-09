@@ -22,7 +22,7 @@ class place{
         bool operator!=(place) const;
         bool operator==(const char&) const;
         bool operator!=(const char&) const;
-        
+        operator char()const{ return sign;}
         friend ostream& operator<<(ostream&, place&);
 };
 
