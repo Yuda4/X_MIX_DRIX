@@ -16,14 +16,14 @@ bool TicTacToe :: game_over(const char sign) {
 
 bool TicTacToe :: check_row(const char sign) {
     int appears = 0;
-    for (int x=0; x<(this->_playGround.boardSize); ++x) {
-		for (int y=0; y<(this->_playGround.boardSize); ++y) {
+    for (int x=0; x<_size; ++x) {
+		for (int y=0; y<_size; ++y) {
 		    Coordinate c{x,y};
 			if ((this->_playGround)[c]==sign) {
 				appears++;
 			}
 		}
-		if(appears == _playGround) return true;
+		if(appears == _size) return true;
 		appears = 0;
 	}
 	return false;
@@ -31,14 +31,14 @@ bool TicTacToe :: check_row(const char sign) {
 
 bool TicTacToe :: check_colm(const char sign) {
     int appears = 0;
-    for (int y=0; y<(this->_playGround.boardSize); ++y) {
-		for (int x=0; x<(this->_playGround.boardSize); ++x) {
+    for (int y=0; y<_size; ++y) {
+		for (int x=0; x<_size; ++x) {
 		    Coordinate c{x,y};
 			if (_playGround[c]==sign) {
 				appears++;
 			}
 		}
-		if(appears == _playGround) return true;
+		if(appears == _size) return true;
 		appears = 0;
 	}
 	return false;
@@ -47,24 +47,23 @@ bool TicTacToe :: check_colm(const char sign) {
 bool TicTacToe :: check_diagonal(const char sign) {
     int appears = 0;
     //Check diagonal - left to right
-    for (int x=0; x<(this->_playGround.boardSize); ++x) {
+    for (int x=0; x<_size; ++x) {
         Coordinate c{x,x};
 			if (_playGround[c]==sign) {
 				appears++;
 			}
-		if(appears == _playGround) return true;
-		appears = 0;
 	}
+	if(appears == _size) return true;
+	appears = 0;
 	//Check diagonal - right to left
-    for (int x=(this->_playGround.boardSize)-1; x>=0; --x) {
+    for (int x=_size-1; x>=0; --x) {
         //Coordinate c{this->_playGround.boardSize-x-1,x};
-        Coordinate c{x,x};
+        Coordinate c{_size-x-1,x};
 		if (_playGround[c]==sign) {
 			appears++;
 		}
-	if(appears == _playGround) return true;
-	appears = 0;
     }
+    if(appears == _size) return true;
 	return false;
 }
 
@@ -73,66 +72,64 @@ void TicTacToe :: play(Player& xPlayer, Player& oPlayer){
     this-> _playGround = '.';
     xPlayer.setChar('X');
     oPlayer.setChar('O');
-    
-    if(counter%2==0){
-        try{
-        counter++;
-        
-        if (_playGround[xPlayer.play(_playGround)] == '.'){
-            _playGround[xPlayer.play(_playGround)] = 'X';
-        }else throw IllegalCharException();
-        if(counter >= _size){ 
-            if (game_over('X')){
-              (this->_winnerPlayer) = &xPlayer;
-              return;  
-            } 
-            if (counter==_size*_size){
+    while(true){
+        if(counter%2==0){
+            try{
+            counter++;
+            const Coordinate c = xPlayer.play(_playGround);
+            if (_playGround[c] == '.'){
+                _playGround[c] = 'X';
+            }else throw IllegalCharException();
+            if(counter >= _size){ 
+                if (game_over('X')){
+                  (this->_winnerPlayer) = &xPlayer;
+                  return;  
+                } 
+                if (counter ==_size*_size){
+                    (this->_winnerPlayer) = &oPlayer;
+                    return;
+                }
+            }
+            }catch(const IllegalCoordinateException& ex){
+                (this->_winnerPlayer) = &oPlayer;
+                return;
+            }catch(const IllegalCharException& ex){
+                (this->_winnerPlayer) = &oPlayer;
+                return;
+            }catch(const string& ex){
                 (this->_winnerPlayer) = &oPlayer;
                 return;
             }
-        }
-        }catch(const IllegalCoordinateException& ex){
-            (this->_winnerPlayer) = &oPlayer;
-            return;
-        }catch(const IllegalCharException& ex){
-            (this->_winnerPlayer) = &oPlayer;
-            return;
-        }catch(const string& ex){
-            (this->_winnerPlayer) = &oPlayer;
-            return;
-        }
-    }else{
-        try{
-        counter++;
-        if (_playGround[xPlayer.play(_playGround)] == '.'){
-            _playGround[xPlayer.play(_playGround)] = 'O';
-        }else throw IllegalCharException();
-        if(counter >= _size){ 
-            if (game_over('O')){
-                (this->_winnerPlayer) = &oPlayer;
-                return;  
-            } 
-            if (counter==_size*_size){
-                (this->_winnerPlayer) = &oPlayer;
+        }else{
+            try{
+            counter++;
+            const Coordinate c = oPlayer.play(_playGround);
+            if (_playGround[c] == '.'){
+                _playGround[c] = 'O';
+            }else throw IllegalCharException();
+            if(counter >= _size){ 
+                if (game_over('O')){
+                    (this->_winnerPlayer) = &oPlayer;
+                    return;  
+                } 
+                if (counter==_size*_size){
+                    (this->_winnerPlayer) = &oPlayer;
+                    return;
+                }
+            }
+            }catch(const IllegalCoordinateException& ex){
+                (this->_winnerPlayer) = &xPlayer;
+                return;
+            }catch(const IllegalCharException& ex){
+                (this->_winnerPlayer) = &xPlayer;
+                return;
+            }catch(const string& ex){
+                (this->_winnerPlayer) = &xPlayer;
                 return;
             }
         }
-        }catch(const IllegalCoordinateException& ex){
-            (this->_winnerPlayer) = &xPlayer;
-            return;
-        }catch(const IllegalCharException& ex){
-            (this->_winnerPlayer) = &xPlayer;
-            return;
-        }catch(const string& ex){
-            (this->_winnerPlayer) = &xPlayer;
-            return;
-        }
-    return;
     }
-    
-    
-    
-    
+    return;
 }
 
 

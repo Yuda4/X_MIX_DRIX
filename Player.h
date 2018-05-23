@@ -4,13 +4,12 @@
 #include <iostream>
 #include "Board.h"
 
-using Coordinate=struct pairs;
+using Coordinate=pairs;
 using namespace std;
 
 class Player{
         
     public:
-    
         char myChar;
         Player(): myChar('.') {}
         Player(char sign): myChar(sign) {}

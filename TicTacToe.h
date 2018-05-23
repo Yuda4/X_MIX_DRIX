@@ -1,11 +1,11 @@
 #pragma once
 #include "Board.h"
 #include "Player.h"
-#include "exceptions.hpp"
+
 #include "Champion.h"
 #include "DummyPlayers.h"
 
-using Coordinate=pairs;
+//using Coordinate=pairs;
 
 class TicTacToe{
     private:
