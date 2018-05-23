@@ -1,9 +1,7 @@
-#ifndef _PLACE_HPP
-#define _PLACE_HPP
+#pragma once
 #include "exceptions.hpp"
 #include <iostream>
 using namespace std;
-#endif
 
 class place{
     private:
@@ -26,8 +24,8 @@ class place{
         friend ostream& operator<<(ostream&, place&);
 };
 
-inline bool operator==(const char& nMember,place member){ return nMember == member.get_sign(); }
-inline bool operator!=(const char& nMember,place member){ return nMember != member.get_sign();}
+inline bool operator==(const char& nMember,place& member){ return nMember == member.get_sign(); }
+inline bool operator!=(const char& nMember,place& member){ return nMember != member.get_sign();}
 
 inline ostream& operator<<(ostream& os, place& plc){
 	    os << plc.get_sign() << endl;

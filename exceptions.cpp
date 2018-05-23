@@ -1,7 +1,5 @@
-#ifndef _EXCEPTIONS_CPP
-#define _EXCEPTIONS_CPP
 #include "exceptions.hpp"
-#endif
+
 
 const char* IllegalCoordinateException :: theCoordinate() const throw (){ return (to_string(first) + ',' +to_string(second) + '\n').c_str(); }
 void IllegalCoordinateException :: set_first(int first){ this-> first = first; }

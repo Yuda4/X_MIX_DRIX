@@ -1,7 +1,4 @@
-#ifndef _PLACE_CPP
-#define _PLACE_CPP
 #include "place.hpp"
-#endif
 
 place :: place(){
     sign = '.';

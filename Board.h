@@ -1,9 +1,7 @@
-#ifndef _BOARD_H
-#define _BOARD_H
+#pragma once
 #include "place.hpp"
 #include <iostream>
 using namespace std;
-#endif
 
 struct pairs{
     int first; //row
@@ -11,7 +9,7 @@ struct pairs{
 };
 
 class Board{
-    public:
+public:
     place** gameBoard;
     int boardSize;
     Board();
@@ -20,6 +18,7 @@ class Board{
     ~Board();
     void alloc();
     void dlloc();
+    int size() const;
 	
     friend ostream& operator<<(ostream& os, const Board& b); //input
     
@@ -29,7 +28,9 @@ class Board{
     friend bool operator!= (const Board&, const Board&);
 
     place& operator[] (const pairs);
+    place operator [] (pairs index) const;
     
+
     void fill(char);
 };
 

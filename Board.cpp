@@ -1,7 +1,4 @@
-#ifndef _BOARD_CPP
-#define _BOARD_CPP
 #include "Board.h"
-#endif
 
 Board :: Board (int size){
     boardSize = size;
@@ -18,6 +15,10 @@ Board :: Board(Board& other){
 
 Board :: ~Board(){
     dlloc();
+}
+
+int Board :: size() const{
+    return boardSize;
 }
 
 void Board :: dlloc(){
@@ -51,6 +52,10 @@ place& Board :: operator[] (const pairs index){
         throw coordinate;
     }
     return gameBoard[index.first][index.second];
+}
+
+place Board :: operator [] (pairs index) const {//read only 
+    return this -> gameBoard[index.first][index.second];
 }
 
 Board& Board ::operator= (Board& other){
