@@ -83,21 +83,26 @@ void TicTacToe :: play(Player& xPlayer, Player& oPlayer){
             if(counter >= _size){ 
                 if (game_over('X')){
                   (this->_winnerPlayer) = &xPlayer;
+                  counter = 0;
                   return;  
                 } 
                 if (counter ==_size*_size){
                     (this->_winnerPlayer) = &oPlayer;
+                    counter = 0;
                     return;
                 }
             }
             }catch(const IllegalCoordinateException& ex){
                 (this->_winnerPlayer) = &oPlayer;
+                counter = 0;
                 return;
             }catch(const IllegalCharException& ex){
                 (this->_winnerPlayer) = &oPlayer;
+                counter = 0;
                 return;
             }catch(const string& ex){
                 (this->_winnerPlayer) = &oPlayer;
+                counter = 0;
                 return;
             }
         }else{
@@ -110,25 +115,31 @@ void TicTacToe :: play(Player& xPlayer, Player& oPlayer){
             if(counter >= _size){ 
                 if (game_over('O')){
                     (this->_winnerPlayer) = &oPlayer;
+                    counter = 0;
                     return;  
                 } 
                 if (counter==_size*_size){
                     (this->_winnerPlayer) = &oPlayer;
+                    counter = 0;
                     return;
                 }
             }
             }catch(const IllegalCoordinateException& ex){
                 (this->_winnerPlayer) = &xPlayer;
+                counter = 0;
                 return;
             }catch(const IllegalCharException& ex){
                 (this->_winnerPlayer) = &xPlayer;
+                counter = 0;
                 return;
             }catch(const string& ex){
                 (this->_winnerPlayer) = &xPlayer;
+                counter = 0;
                 return;
             }
         }
     }
+    counter = 0;
     return;
 }
 
